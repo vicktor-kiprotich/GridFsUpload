@@ -1,14 +1,28 @@
-import React from "react";
-import {Form} from "react-bootstrap";
-export default function UploadPhoto() {
+import React, { useState, useEffect } from "react";
+import { Button, Form } from "react-bootstrap";
+import axios from "axios";
+export default function Home() {
+  const [photo, setPhoto] = useState("");
+  const fetchPhotos = async () => {
+    const response = await axios.post(`/uploads`);
+
+    setPhoto(response.data);
+
+  };
+  useEffect(() => {
+    fetchPhotos(photo);
+  });
+ const handleSubmit=(e)=>{
+  e.preventDefault()
+  fetchPhotos(photo);
+ }
   return (
     <div>
-    <Form>
-  <Form.Group>
-    <Form.File id="exampleFormControlFile1" />
-  </Form.Group>
-</Form>
+      <Form>
+        <Form.File name='photo' id="custom-file" label="Custom file input" custom />
 
+        <Button type='submit'  onSubmit={handleSubmit}>Upload </Button>
+      </Form>
     </div>
   );
 }
