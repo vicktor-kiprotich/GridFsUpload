@@ -1,0 +1,1 @@
+const Grapghl=require('graphql')
