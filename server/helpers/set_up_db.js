@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Grid = require("gridfs-stream");
+require("../files/models/files.model");
 
 module.exports = async () => {
   mongoose.connect(process.env.DB_URL, {
